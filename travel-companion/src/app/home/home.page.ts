@@ -4,6 +4,8 @@ import { CameraService } from '../services/camera.service';
 import { IonButton } from '@ionic/angular/standalone';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { LocationService } from '../services/location.service';
+import { DeviceInfoService } from '../services/device-info.service';
+
 
 defineCustomElements(window);
 // import PWaCem (assuming this was an incomplete import and not needed)
@@ -17,7 +19,7 @@ defineCustomElements(window);
 
 })
 export class HomePage {
-  constructor(private camera:CameraService, private location:LocationService) {}
+  constructor(private camera:CameraService, private location:LocationService, private device: DeviceInfoService) {}
 
   async takePicture() {
     const photo = await this.camera.takePicture();  
@@ -29,6 +31,10 @@ export class HomePage {
     if (locationElement) {
       locationElement.innerText = `Latitude: ${location.coords.latitude}, Longitude: ${location.coords.longitude}`;
     }
-
   }
+
+  async getDeviceInfo() {
+    const deviceInfo = await this.device.getDeviceInfo();
+    
+  } 
 }
