@@ -13,6 +13,7 @@ export class CameraService {
    * @returns Promise<string | undefined> Returns base64 encoded image string or undefined if failed
    */
   async takePicture(): Promise<string | undefined> {
+    
     // Use Capacitor Camera API to capture photo
     const image = await Camera.getPhoto({
       // Request base64 format for easy display in HTML img tag
