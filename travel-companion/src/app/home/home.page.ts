@@ -3,6 +3,7 @@ import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/stan
 import { CameraService } from '../services/camera.service';
 import { IonButton } from '@ionic/angular/standalone';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
+import { LocationService } from '../services/location.service';
 
 defineCustomElements(window);
 // import PWaCem (assuming this was an incomplete import and not needed)
@@ -16,9 +17,18 @@ defineCustomElements(window);
 
 })
 export class HomePage {
-  constructor(private camera:CameraService) {}
+  constructor(private camera:CameraService, private location:LocationService) {}
 
   async takePicture() {
     const photo = await this.camera.takePicture();  
+  }
+
+  async getLocation() {
+    const location = await this.location.getCurrentPosition();
+    const locationElement = document.getElementById('location');
+    if (locationElement) {
+      locationElement.innerText = `Latitude: ${location.coords.latitude}, Longitude: ${location.coords.longitude}`;
+    }
+
   }
 }

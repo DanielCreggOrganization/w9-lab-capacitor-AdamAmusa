@@ -1,4 +1,3 @@
-// src/app/services/location.service.ts
 import { Injectable } from '@angular/core';
 import { Geolocation } from '@capacitor/geolocation';
 
@@ -8,7 +7,10 @@ import { Geolocation } from '@capacitor/geolocation';
 export class LocationService {
   constructor() { }
 
+  
+
   async getCurrentPosition() {
-    // YOUR CODE HERE
+    const coordinates = await Geolocation.getCurrentPosition();
+    return coordinates;
   }
 }
